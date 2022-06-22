@@ -7,9 +7,14 @@ def main():
 
 
 def fenetre_principale():
+
     def vers_explication():
         fen.destroy()
         fenetre_explication()
+
+    def vers_jouer():
+        fen.destroy()
+        fenetre_jouer()
 
     fen = Tk()
 
@@ -23,13 +28,22 @@ def fenetre_principale():
                                 command=vers_explication)
     bouton_explication.pack(pady=100)
 
-    bouton_jouer = Button(fen, text="Jouer", height=3, width=30, font=f, bg="orange")
+    bouton_jouer = Button(fen, text="Jouer", height=3, width=30, font=f, bg="orange", command=vers_jouer)
     bouton_jouer.pack()
 
     fen.mainloop()
 
 
 def fenetre_explication():
+
+    def vers_principale():
+        fen.destroy()
+        fenetre_principale()
+
+    def vers_jouer():
+        fen.destroy()
+        fenetre_jouer()
+
     fen = Tk()
 
     fen.title("Interface")
@@ -56,13 +70,22 @@ def fenetre_explication():
     bouton_de = Button(fen, text="Explication du dé spécial", height=h, width=w, font=f, bg="#55B4D1")
     bouton_de.pack(pady=y)
 
-    bouton_jouer = Button(fen, text="Jouer", height=h, width=w, font=f, bg="orange")
+    bouton_jouer = Button(fen, text="Jouer", height=h, width=w, font=f, bg="orange", command=vers_jouer)
     bouton_jouer.pack()
 
     fen.mainloop()
 
 
 def fenetre_jouer():
+
+    def vers_principale():
+        fen.destroy()
+        fenetre_principale()
+
+    def vers_explication():
+        fen.destroy()
+        fenetre_explication()
+
     fen = Tk()
     h = 2
     w = 40
@@ -73,28 +96,53 @@ def fenetre_jouer():
     fen.resizable(False, False)
 
     f = font.Font(size=25)
-    h_droit = 8
+    h_droit = 6
 
-    h_gauche = 2
-    w_gauche = 18
+    x_droit = 10
+    y_droit = 15
 
-    pane_gauche = Frame(bg="black")
-    pane_droit = Frame(bg="grey")
+    h_gauche = 3
+    w_gauche = 19
 
-    pane_gauche.pack(side=LEFT, padx=10, pady=10, fill=BOTH)
-    pane_droit.pack(side=RIGHT, padx=10, pady=10, fill=BOTH)
+    x_gauche = 2
+    y_gauche = 2
 
-    bouton_regle = Button(pane_droit, text="Règles du jeu", bg="#55B4D1", font=f, height=h_droit)
-    bouton_regle.pack(side=TOP, fill=BOTH)
+    pane_gauche = Frame()
+    pane_droit = Frame()
 
-    bouton_quiiter = Button(pane_droit, text="Quitter le jeu", bg="red", font=f, height=h_droit)
-    bouton_quiiter.pack(side=BOTTOM, fill=BOTH)
+    pane_gauche.pack(side=LEFT, padx=10, pady=10)
+    pane_droit.pack(side=RIGHT, padx=15, pady=10)
 
-    bouton_art = Button(pane_gauche, text="Arts", bg="red", font=f, height=h_gauche, width=w_gauche)
-    bouton_art.grid(row=1, column=1)
+    bouton_regle = Button(pane_droit, text="Règles du jeu", bg="green", font=font.Font(size=24), height=h_droit, command=vers_explication)
+    bouton_regle.pack(side=TOP, fill=BOTH, pady=y_droit)
 
-    bouton_environnement = Button(pane_gauche, text="Environnement", bg="red", font=f, height=h_gauche, width=w_gauche)
-    bouton_environnement.grid(row=1, column=2)
+    bouton_quiiter = Button(pane_droit, text="Quitter le jeu", bg="red", font=font.Font(size=24), height=h_droit, command=vers_principale)
+    bouton_quiiter.pack(side=BOTTOM, fill=BOTH, pady=y_droit)
+
+    bouton_art = Button(pane_gauche, text="Arts", bg="pink", font=f, height=h_gauche, width=w_gauche)
+    bouton_art.grid(row=1, column=1, padx=x_gauche, pady=y_gauche)
+
+    bouton_environnement = Button(pane_gauche, text="Environnement", bg="green", font=f, height=h_gauche, width=w_gauche)
+    bouton_environnement.grid(row=1, column=2, padx=x_gauche, pady=y_gauche)
+
+    bouton_chronologie = Button(pane_gauche, text="Chronologie", bg="brown", font=f, height=h_gauche, width=w_gauche)
+    bouton_chronologie.grid(row=2, column=1, padx=x_gauche, pady=y_gauche)
+
+    bouton_geo = Button(pane_gauche, text="Géographie", bg="blue", font=f, height=h_gauche, width=w_gauche)
+    bouton_geo.grid(row=2, column=2, padx=x_gauche, pady=y_gauche)
+
+    bouton_culture_g = Button(pane_gauche, text="Culture générale", bg="white", font=f, height=h_gauche, width=w_gauche)
+    bouton_culture_g.grid(row=3, column=1, padx=x_gauche, pady=y_gauche)
+
+    bouton_sciences = Button(pane_gauche, text="Sciences", bg="orange", font=f, height=h_gauche, width=w_gauche)
+    bouton_sciences.grid(row=3, column=2, padx=x_gauche, pady=y_gauche)
+
+    bouton_culture_populaire = Button(pane_gauche, text="Culture populaire", bg="grey", font=f, height=h_gauche, width=w_gauche)
+    bouton_culture_populaire.grid(row=4, column=1, padx=x_gauche, pady=y_gauche)
+
+    bouton_sports = Button(pane_gauche, text="Sports", bg="purple", font=f, height=h_gauche,
+                        width=w_gauche)
+    bouton_sports.grid(row=4, column=2, padx=x_gauche, pady=y_gauche)
 
     fen.mainloop()
 
