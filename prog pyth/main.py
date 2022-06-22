@@ -19,6 +19,10 @@ def fenetre_principale():
         fen.destroy()
         fenetre_jouer()
 
+    def lire_cat(num, event):
+        pygame.mixer.music.load("categories\{}".format(cat_son[num]))
+        pygame.mixer.music.play()
+
     fen = Tk()
 
     fen.title("Interface")
@@ -29,9 +33,11 @@ def fenetre_principale():
 
     bouton_explication = Button(fen, text="Explication des règles", height=3, width=30, font=f, bg="green",
                                 command=vers_explication)
+    bouton_explication.bind("<Enter>", partial(lire_cat, 11))
     bouton_explication.pack(pady=100)
 
     bouton_jouer = Button(fen, text="Jouer", height=3, width=30, font=f, bg="orange", command=vers_jouer)
+    bouton_jouer.bind("<Enter>", partial(lire_cat, 10))
     bouton_jouer.pack()
 
     fen.mainloop()
@@ -42,6 +48,10 @@ def fenetre_explication():
     def vers_jouer():
         fen.destroy()
         fenetre_jouer()
+
+    def lire_cat(num, event):
+        pygame.mixer.music.load("categories\{}".format(cat_son[num]))
+        pygame.mixer.music.play()
 
     fen = Tk()
 
@@ -70,6 +80,7 @@ def fenetre_explication():
     bouton_de.pack(pady=y)
 
     bouton_jouer = Button(fen, text="Jouer", height=h, width=w, font=f, bg="orange", command=vers_jouer)
+    bouton_jouer.bind("<Enter>", partial(lire_cat, 10))
     bouton_jouer.pack()
 
     fen.mainloop()
@@ -132,8 +143,9 @@ def fenetre_jouer():
     bouton_regle.bind("<Enter>", partial(lire_cat, 8))
     bouton_regle.pack(side=TOP, fill=BOTH, pady=y_droit)
 
-    bouton_quiiter = Button(pane_droit, text="Quitter le jeu", bg="red", font=font.Font(size=24), height=h_droit, command=vers_principale)
-    bouton_quiiter.pack(side=BOTTOM, fill=BOTH, pady=y_droit)
+    bouton_quitter = Button(pane_droit, text="Quitter le jeu", bg="red", font=font.Font(size=24), height=h_droit, command=vers_principale)
+    bouton_quitter.bind("<Enter>", partial(lire_cat, 9))
+    bouton_quitter.pack(side=BOTTOM, fill=BOTH, pady=y_droit)
 
     bouton_art = Button(pane_gauche, text="Arts", bg="pink", font=f, height=h_gauche, width=w_gauche, command=partial(lire_audio, 0))
     bouton_art.bind("<Enter>", partial(lire_cat, 0))
@@ -174,7 +186,8 @@ q_son = [["art_q1_q.mp3", "art_q1_r.mp3"], ["chronologie_q5_q.mp3", "chronologie
        ["culture_populaire_q5_q.mp3", "culture_populaire_q5_r.mp3"], ["question_environnement.mp3", "reponse_environnement.mp3"],
        ["question_sciences.mp3", "reponse_science.mp3"], ["question_geo.mp3", "reponse_geo.mp3"], ["question_sport.mp3", "reponse_sport.mp3"]]
 
-cat_son = ["art.mp3", "chronologie.mp3", "culture_g.mp3", "culture_pop.mp3", "environnement.mp3", "sciences.mp3", "geo.mp3", "sport.mp3", "regles.mp3"]
+cat_son = ["art.mp3", "chronologie.mp3", "culture_g.mp3", "culture_pop.mp3", "environnement.mp3", "sciences.mp3",
+           "geo.mp3", "sport.mp3", "regles.mp3", "quitter.mp3", "jouer.mp3", "explication_regles.mp3"]
 
 question = [0]*8
 
